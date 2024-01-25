@@ -11,7 +11,8 @@ const Item = {
       throw new Error('Name and description are required');
     }
     const forbiddenPatterns = /--|drop|where|alter|^[0-9]/i; 
-  if (forbiddenPatterns.test(name) || forbiddenPatterns.test(description)) {
+    const javascriptPattern = /<script\b[^>]*>[\s\S]*?<\/script>/gi;
+  if (forbiddenPatterns.test(name) || forbiddenPatterns.test(description) || javascriptPattern.test(name) || javascriptPattern.test(description)) {
     throw new Error('Invalid characters detected in name or description');
   }
   
@@ -25,7 +26,8 @@ const Item = {
     }
     const forbiddenPatterns = /--|drop|where|alter|^[0-9]/i; 
     const forbiddenPatterns1 = /^[a-z]/i; 
-  if (forbiddenPatterns.test(name) || forbiddenPatterns.test(description) ||  forbiddenPatterns1.test(id)) {
+    const javascriptPattern = /<script\b[^>]*>[\s\S]*?<\/script>/gi;
+  if (forbiddenPatterns.test(name) || forbiddenPatterns.test(description) ||  forbiddenPatterns1.test(id) || javascriptPattern.test(name) || javascriptPattern.test(description) ){
     throw new Error('Invalid characters detected in name or description');
   }
   
